@@ -87,11 +87,11 @@ const Navbar = () => {
               <rect x="14" y="1" width="7" height="6" />
               <rect x="14" y="11" width="7" height="12" />
             </svg>
-            <span className="ml-2 text-xl font-bold tracking-wide text-[#666] uppercase">
+            <span className="ml-2 text-xl font-bold tracking-wide text-[#666] uppercase sm:block hidden">
               Company
             </span>
           </Link>
-          <div className="relative w-[50%] mx-auto">
+          <div className="relative md:w-[50%] mx-auto">
             <input
               type="text"
               placeholder="Search books..."

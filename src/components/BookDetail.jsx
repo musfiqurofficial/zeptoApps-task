@@ -64,7 +64,7 @@ const BookDetail = () => {
     <div className="">
       <h3 className="text-[18px] font-semibold px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 mt-4">Preview Page</h3>
       <hr className="my-6" />
-      <div className="flex justify-start items-start gap-10 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+      <div className="md:flex justify-start items-start gap-10 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <img
           src={book.formats["image/jpeg"]}
           alt={book.title}
@@ -89,7 +89,7 @@ const BookDetail = () => {
             <div className="w-full space-x-4 flex justify-between items-center gap-10">
               <button
                 onClick={() => handleWishlist(book)}
-                className="text-red-500 px-4 py-2 border border-red-500 hover:bg-slate-100  rounded-md text-[12px]"
+                className="text-red-500 px-4 py-2 border border-red-500 hover:bg-slate-100  rounded-md"
               >
                 {wishlist.some((item) => item.id === book.id)
                   ? "❤️ Wishlisted"
@@ -117,29 +117,29 @@ const BookDetail = () => {
       </div>
       <div className="bg-[#F8F8F8] py-4 my-3">
         <p className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-          <strong>Languages:</strong> {book.languages.join(", ")}
+          <strong>Languages:</strong> <span className="uppercase">{book.languages.join(", ")}</span>
         </p>
       </div>
       <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <p>
           <strong>Download Formats:</strong>
         </p>
-        <ul className="flex justify-start mt-4 items-center gap-4">
-          <li className="px-4 py-1 rounded bg-[#F8F8F8] text-[12px]">
+        <ul className="flex justify-evenly md:justify-start mt-4 items-center gap-2 md:gap-4 text-[10px] md:text-[12px]">
+          <li className="px-4 py-1 rounded bg-[#F8F8F8]">
             <a href={book.formats["text/html"]}>HTML</a>
           </li>
-          <li className="px-4 py-1 rounded bg-[#F8F8F8] text-[12px]">
+          <li className="px-4 py-1 rounded bg-[#F8F8F8]">
             <a href={book.formats["application/epub+zip"]}>EPUB</a>
           </li>
-          <li className="px-4 py-1 rounded bg-[#F8F8F8] text-[12px]">
+          <li className="px-4 py-1 rounded bg-[#F8F8F8]">
             <a href={book.formats["application/x-mobipocket-ebook"]}>MOBI</a>
           </li>
-          <li className="px-4 py-1 rounded bg-[#F8F8F8] text-[12px]">
+          <li className="px-4 py-1 rounded bg-[#F8F8F8]">
             <a href={book.formats["text/plain; charset=us-ascii"]}>
               Plain Text
             </a>
           </li>
-          <li className="px-4 py-1 rounded bg-[#F8F8F8] text-[12px]">
+          <li className="px-4 py-1 rounded bg-[#F8F8F8]">
             <a href={book.formats["application/octet-stream"]}>Zipped HTML</a>
           </li>
         </ul>
