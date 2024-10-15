@@ -2,14 +2,19 @@
 import { Link } from "react-router-dom";
 
 export default function BookCard({ book, handleWishlist, wishlist }) {
+  const truncateTitle = (title) => {
+    return title.length > 45 ? `${title.substring(0, 45)}...` : title;
+  };
   return (
-    <div className="overflow-hidden duration-300 bg-[#fefefe] rounded-xl shadow-sm h-[480px] relative border border-stone-200 cursor-pointer ">
+    <div className="overflow-hidden duration-300 bg-[#fefefe] rounded-xl shadow-sm h-[480px] relative border border-stone-200 cursor-pointer hover:scale-105 transition-all">
       <div className="p-3">
-        <img
-          src={book.formats["image/jpeg"]}
-          alt={book.title}
-          className="object-cover mx-auto w-auto h-[300px] shadow hover:scale-105 transition-all"
-        />
+        <Link to={`/book/${book.id}`}>
+          <img
+            src={book.formats["image/jpeg"]}
+            alt={book.title}
+            className="object-cover mx-auto w-auto h-[300px] shadow hover:scale-105 transition-all"
+          />
+        </Link>
       </div>
       <div className="px-4">
         <p className="mb-3 text-xs font-semibold tracking-wide uppercase">
@@ -25,7 +30,13 @@ export default function BookCard({ book, handleWishlist, wishlist }) {
           to={`/book/${book.id}`}
           className="inline-block mb-2 text-xl font-bold leading-5 transition-colors duration-200 hover:text-purple-700"
         >
-          {book.title}
+          <span
+            className="tooltip"
+            data-tooltip={book.title}
+            title={book.title.length > 5 ? book.title : ""}
+          >
+            {truncateTitle(book.title)}
+          </span>
         </Link>
         <p className="mb-2 text-gray-700 text-[12px]">
           <span className="text-[14px] font-semibold text-purple-700">
