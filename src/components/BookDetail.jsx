@@ -172,7 +172,7 @@ const BookDetail = () => {
                 <img
                   src={relatedBook.formats["image/jpeg"]}
                   alt={relatedBook.title}
-                  className="w-full h-[200px] object-cover mb-2"
+                  className="w-auto h-[200px] mb-2"
                 />
                 <h3 className="text-sm font-bold">{relatedBook.title}</h3>
               </Link>
