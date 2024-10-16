@@ -5,7 +5,7 @@ import { CiShare1 } from "react-icons/ci";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import "swiper/css/autoplay";
+import { Autoplay } from 'swiper/modules';
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -62,7 +62,9 @@ const BookDetail = () => {
 
   return (
     <div className="">
-      <h3 className="text-[18px] font-semibold px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 mt-4">Preview Page</h3>
+      <h3 className="text-[18px] font-semibold px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 mt-4">
+        Preview Page
+      </h3>
       <hr className="my-6" />
       <div className="md:flex justify-start items-start gap-10 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
         <img
@@ -117,7 +119,8 @@ const BookDetail = () => {
       </div>
       <div className="bg-[#F8F8F8] py-4 my-3">
         <p className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-          <strong>Languages:</strong> <span className="uppercase">{book.languages.join(", ")}</span>
+          <strong>Languages:</strong>{" "}
+          <span className="uppercase">{book.languages.join(", ")}</span>
         </p>
       </div>
       <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
@@ -146,11 +149,18 @@ const BookDetail = () => {
       </div>
       <hr className="my-6" />
       <div className="related-posts py-4">
-        <h2 className="text-xl font-semibold mb-4 px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">Related Books</h2>
+        <h2 className="text-xl font-semibold mb-4 px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
+          Related Books
+        </h2>
         <Swiper
           spaceBetween={20}
           slidesPerView={3}
-          autoplay={{ delay: 3000 }}
+          centeredSlides={true}
+          autoplay={{
+            delay: 2500,
+            disableOnInteraction: false,
+          }}
+          modules={[Autoplay]}
           className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
         >
           {relatedBooks.map((relatedBook) => (
