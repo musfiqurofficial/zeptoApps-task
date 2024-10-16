@@ -153,15 +153,40 @@ const BookDetail = () => {
           Related Books
         </h2>
         <Swiper
-          spaceBetween={20}
-          slidesPerView={3}
-          centeredSlides={true}
+          slidesPerView={4}
+          spaceBetween={30}
+          slidesPerGroup={1}
           autoplay={{
-            delay: 2500,
+            delay: 5500,
             disableOnInteraction: false,
           }}
+          loop={true}
+          loopFillGroupWithBlank={true}
+          breakpoints={{
+          
+            320: {
+              slidesPerView: 2,
+              spaceBetween: 150,
+            },
+            480: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+            },
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 180,
+            },
+            768: {
+              slidesPerView: 4,
+              spaceBetween: 40,
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 50,
+            },
+          }}
           modules={[Autoplay]}
-          className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
+          className="mySwiper px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8"
         >
           {relatedBooks.map((relatedBook) => (
             <SwiperSlide key={relatedBook.id}>
