@@ -153,8 +153,8 @@ const BookDetail = () => {
           Related Books
         </h2>
         <Swiper
-          slidesPerView={4}
-          spaceBetween={30}
+          slidesPerView={5}
+          spaceBetween={10}
           slidesPerGroup={1}
           autoplay={{
             delay: 5500,
@@ -181,7 +181,7 @@ const BookDetail = () => {
               spaceBetween: 40,
             },
             1024: {
-              slidesPerView: 4,
+              slidesPerView: 5,
               spaceBetween: 50,
             },
           }}
