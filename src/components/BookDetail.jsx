@@ -5,7 +5,7 @@ import { CiShare1 } from "react-icons/ci";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
-import { Autoplay } from 'swiper/modules';
+import { Autoplay } from "swiper/modules";
 
 const BookDetail = () => {
   const { id } = useParams();
@@ -169,11 +169,13 @@ const BookDetail = () => {
                 to={`/book/${relatedBook.id}`}
                 className="block text-center"
               >
-                <img
-                  src={relatedBook.formats["image/jpeg"]}
-                  alt={relatedBook.title}
-                  className="w-auto h-[200px] mb-2"
-                />
+                <center>
+                  <img
+                    src={relatedBook.formats["image/jpeg"]}
+                    alt={relatedBook.title}
+                    className="w-auto h-[200px] mb-2"
+                  />
+                </center>
                 <h3 className="text-sm font-bold">{relatedBook.title}</h3>
               </Link>
             </SwiperSlide>
