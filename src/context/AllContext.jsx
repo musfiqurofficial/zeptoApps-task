@@ -59,6 +59,7 @@ export const ContextProvider = ({ children }) => {
         setSearchTerm,
         showDropdown,
         setShowDropdown,
+        setWishlist,
         filteredBooks,
         setFilteredBooks,
         handleBookClick,

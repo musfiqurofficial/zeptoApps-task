@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useMemo, useCallback } from "react";
 import {
   IoArrowBackCircleOutline,
   IoArrowForwardCircleOutline,
@@ -15,12 +15,14 @@ const BookList = () => {
 
   const {
     wishlist,
+    setWishlist,
     handleWishlist,
     searchTerm,
     setShowDropdown,
     setFilteredBooks,
   } = useContext(AllContext);
 
+  // Load books from API
   useEffect(() => {
     const fetchBooks = async () => {
       const res = await fetch("https://gutendex.com/books");
@@ -34,18 +36,38 @@ const BookList = () => {
     fetchBooks();
   }, []);
 
+  // Load wishlist from localStorage on component mount
   useEffect(() => {
+    const storedWishlist = JSON.parse(localStorage.getItem('wishlist'));
+    if (storedWishlist) {
+      setWishlist(storedWishlist);
+    }
+  }, [setWishlist]);
+
+  // Memoizing the filtered books
+  const filteredBooks = useMemo(() => {
     if (searchTerm) {
-      const filtered = books.filter((book) =>
+      return books.filter((book) =>
         book.title.toLowerCase().includes(searchTerm.toLowerCase())
       );
-      setFilteredBooks(filtered);
-      setShowDropdown(true);
-    } else {
-      setFilteredBooks([]);
-      setShowDropdown(false);
     }
-  }, [searchTerm, books, setFilteredBooks, setShowDropdown]);
+    return [];
+  }, [searchTerm, books]);
+
+  useEffect(() => {
+    setFilteredBooks(filteredBooks);
+    setShowDropdown(!!searchTerm);
+  }, [filteredBooks, setFilteredBooks, setShowDropdown, searchTerm]);
+
+  // Memoized function to handle wishlist
+  const memoizedHandleWishlist = useCallback(
+    (book) => {
+      const updatedWishlist = handleWishlist(book);
+      // Save the updated wishlist to localStorage
+      localStorage.setItem('wishlist', JSON.stringify(updatedWishlist));
+    },
+    [handleWishlist]
+  );
 
   const indexOfLastBook = currentPage * booksPerPage;
   const indexOfFirstBook = indexOfLastBook - booksPerPage;
@@ -63,12 +85,13 @@ const BookList = () => {
               <BookCard
                 key={book.id}
                 book={book}
-                handleWishlist={handleWishlist}
+                handleWishlist={memoizedHandleWishlist}
                 wishlist={wishlist}
               />
             ))}
           </div>
 
+          {/* Pagination Controls */}
           <div className="flex justify-center mt-8">
             <button
               onClick={() => setCurrentPage(currentPage - 1)}
